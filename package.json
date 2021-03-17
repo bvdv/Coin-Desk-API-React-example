@@ -2,9 +2,17 @@
   "name": "coin-desk-api-react-example",
   "version": "1.0.0",
   "description": "Coin Desk API &amp; Document analyse tool - React examples",
-  "main": "index.js",
+  "main": ".index.js",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack serve",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "create": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -18,7 +26,8 @@
   "homepage": "https://github.com/bvdv/Coin-Desk-API-React-example#readme",
   "dependencies": {
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.10",
