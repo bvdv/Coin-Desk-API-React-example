@@ -6,8 +6,8 @@ import AnalyseTool from './analysis-tool/analysis-tool';
 import CurrencyPage from './currencies/currencies';
 
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
-//import { BrowserRouter, Route, Redirect } from 'react-router-dom';
-function App() {
+
+const App = () => {
     return (
         <div>
             <Router>
