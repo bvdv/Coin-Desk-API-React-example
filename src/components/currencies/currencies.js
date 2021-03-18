@@ -6,7 +6,7 @@ const CurrencyPage = () => {
 
   const [list, setList] = useState([]);
 
-  //need add isLoaded
+  // TODO: need add isLoaded
 
   useEffect(() => {
     let mounted = true;
