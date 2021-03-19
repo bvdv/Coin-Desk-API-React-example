@@ -4,7 +4,10 @@ import CoindeskApiService from '../../services/api-services';
 
 const CurrencyPage = () => {
 
-  // TODO: need add isLoaded for case whene response from API too slow
+  /* TODO: 
+  1) need add isLoaded for case whene response from API too slow
+  2) useCallback() for Object.keys(items.bpi).map((k) => items.bpi[k])
+  */
 
   const [time, setTime] = useState([]);
   const [bpi, setBpi] = useState([]);
@@ -17,37 +20,41 @@ const CurrencyPage = () => {
 
   useEffect(() => {
     getCurrenciesData();
-    setInterval(() => {
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
       getCurrenciesData();
     }, 10000);
-  }, []);
+    return () => clearInterval(interval);
+  }, [bpi])
 
   const getCurrenciesData = () => {
     CoindeskApiService.getMainCurrenciesPrices()
       .then(items => {
         setTime(items.time.updated);
-        setBpi(items.bpi);
+        setBpi(Object.keys(items.bpi).map((k) => items.bpi[k]));
         setStatus(false);
       }).catch(
         error => setStatus(true)
       );
   }
 
-  const getSortedData = () => {
-    let arr = Object.entries(bpi);
-    let arrCodeRate = [];
-    for (let index = 0; index < arr.length; index++) {
-      arrCodeRate.push({ 
-        id:index,
-        code:arr[index][1].code, 
-        rate:arr[index][1].rate_float 
-      });
-    }
-    console.log('--->', arrCodeRate);
-    return(
+  const displayCurrenciesData = () => {
+    // switch (sortNumber) {
+    //   case value:
+    //     break;
+
+    //   case value:
+    //     break;
+
+    //   default:
+    //     break;
+    // }
+    return (
       <tbody>
-        {arrCodeRate.map((item) => (
-          <tr key={item.id}>
+        {bpi.map((item, index) => (
+          <tr key={index}>
             <td>{item.code}</td>
             <td>${item.rate}</td>
           </tr>
@@ -56,10 +63,15 @@ const CurrencyPage = () => {
     );
   };
 
+  const sortedData = () => {
+    let sort = bpi.sort((a, b) => {      
+      return a.rate_float - b.rate_float;
+    });
+  }
+
   return (
     <div>
       <Header />
-
       <div className="container">
         <div>
           <h4>This data was produced from the CoinDesk Bitcoin Price Index (USD).</h4>
@@ -72,13 +84,13 @@ const CurrencyPage = () => {
                   Code
                 </th>
                 <th scope="col">
-                  Rate <button className="btn btn-link" onClick={() => { setNumbersSort() }}>
-                            <span>&#129031;</span><span>&#129029;</span>
-                        </button>
+                  Rate <button className="btn btn-link" onClick={() => { sortedData() }}>
+                    <span>&#129031;</span><span>&#129029;</span>
+                  </button>
                 </th>
               </tr>
             </thead>
-            { getSortedData() }
+            {displayCurrenciesData()}
           </table>
           <div>
             <p className="text-left">Powered by <a href="https://www.coindesk.com/price/bitcoin">CoinDesk</a></p>
