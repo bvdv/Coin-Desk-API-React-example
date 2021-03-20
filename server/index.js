@@ -8,10 +8,6 @@ const cors = require('cors'); // devDependencies
 app.use(cors()); // devDependencies
 app.options('*', cors()); // devDependencies
 
-
-
-
-
 app.post('/gethtml', (req, res, next) => {
   fetch(req.body.data)
     .then(response => { return response.text() })

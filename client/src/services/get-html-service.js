@@ -1,7 +1,6 @@
 /*
 TODO:
-  1) add URL validation
-
+  1) nginx should protect agains to many request
 */
 
 const apiBase = 'http://localhost:3000/gethtml';
