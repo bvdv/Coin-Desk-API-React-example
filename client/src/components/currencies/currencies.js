@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import Header from '../header/header';
+import Header from '../includes/header/header';
 import CoindeskApiService from '../../services/api-services';
 
 const CurrencyPage = () => {
