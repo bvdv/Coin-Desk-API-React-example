@@ -1,8 +1,7 @@
 import React from 'react';
-import './app.css';
 
 import MainPage from './main-page/main-page';
-import AnalyseToolPage from './analysis-tool/analysis-tool';
+import AnalyseToolPage from './analysis-page/analysis-page';
 import CurrencyPage from './currencies/currencies';
 
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';

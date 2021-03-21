@@ -57,7 +57,7 @@ const AnalyzedTags = ({ documentString }) => {
       <div>
         <hr />
         <p>All unique tags:</p>
-        <p>
+        <p id="test2">
           {allUniqTags.map((item, index) => (
             <span key={index}>
               <span>{item}, </span>

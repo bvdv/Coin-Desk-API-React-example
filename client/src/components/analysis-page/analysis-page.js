@@ -8,7 +8,7 @@ const AnalyseToolPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [wrongUrlStatus, setWrongUrlStatus] = useState(false);
   const [documentString, setDocumentString] = useState();
-  const wrongUrlMsg = "sorry, URL not found or you made more than 1 URL checks per sec"
+  const wrongUrlMsg = "sorry, URL not found or you made more than 1 URL check per sec"
 
   const handleSubmit = event => {
     setWrongUrlStatus(false);
@@ -25,7 +25,7 @@ const AnalyseToolPage = () => {
     <div>
       <Header />
       <div className="container">
-        <p>Please enter the link for analyse and press Analyse ( allowed only up to 1 URL checks per sec )</p>
+        <p>Please enter the link for analyse and press Analyse ( allowed only up to 1 URL check per sec )</p>
         <p>example: http://google.com </p>
         <form className="row g-3" onSubmit={handleSubmit}>
           <div className="input-group mb-3">
