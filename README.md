@@ -10,6 +10,9 @@ Run code locally on Windows:
 Build
   - client/ - `npm run create`
 
+Tests
+  - client/ - `npm run testj`
+
 Nginx requests limit for route - `/gethtml`
  - `limit_req_zone $binary_remote_addr zone=mylimit:10m rate=1r/s;`
 
