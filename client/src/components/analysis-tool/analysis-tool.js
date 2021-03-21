@@ -8,13 +8,16 @@ const AnalyseToolPage = () => {
   const [inputValue, setInputValue] = useState("");
   const [wrongUrlStatus, setWrongUrlStatus] = useState(false);
   const [documentString, setDocumentString] = useState();
-  const wrongUrlMsg = "sorry, URL not found"
+  const wrongUrlMsg = "sorry, URL not found or you made more than 3 URL checks per min"
 
   const handleSubmit = event => {
     setWrongUrlStatus(false);
     GetHtmlService.getHtml(inputValue)
       .then(res => { setDocumentString(res) })
-      .catch(err => setWrongUrlStatus(true));
+      .catch(err => {
+          setWrongUrlStatus(true);
+          setDocumentString('wrong URL');
+        });
     event.preventDefault();
   }
 
@@ -31,7 +34,7 @@ const AnalyseToolPage = () => {
           </div>
         </form>
         <p>{wrongUrlStatus && wrongUrlMsg}</p>
-        <AnalyzedTags documentString={documentString}/>
+        <AnalyzedTags documentString={documentString} />
       </div>
     </div>
   );

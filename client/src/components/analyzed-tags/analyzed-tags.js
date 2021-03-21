@@ -13,6 +13,7 @@ const AnalyzedTags = ({ documentString }) => {
     if (documentString) {
       analyzeTags(documentString);
     }
+    return () => { console.log("cleaned up");};
   }, [documentString]);
 
   const analyzeTags = (documentString) => {
