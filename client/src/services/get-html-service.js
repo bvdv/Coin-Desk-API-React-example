@@ -1,6 +1,8 @@
 /*
 TODO:
-  1) nginx should protect agains to many request
+  1) Nginx should protect agains to many request
+  2) if res.status === 404 - page not found, 
+     if res status === 503 - please only 3 request per min
 */
 
 const apiBase = 'http://localhost:3000/gethtml';

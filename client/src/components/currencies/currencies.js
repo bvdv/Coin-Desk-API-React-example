@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import Header from '../includes/header/header';
-import CoindeskApiService from '../../services/api-services';
+import CoindeskApiService from '../../services/coindesk-api-services';
 
 const CurrencyPage = () => {
 
   /* TODO: 
-  1) need add isLoaded for case whene response from API too slow
-  2) useCallback() for Object.keys(items.bpi).map((k) => items.bpi[k])
+      1) need add isLoaded for case whene response from API too slow
+      2) useCallback() for Object.keys(items.bpi).map((k) => items.bpi[k])
   */
 
   const [time, setTime] = useState([]);
   const [bpi, setBpi] = useState([]);
-  const [apiError, setStatus] = useState(false);
+  const [apiError, setApiErrorStatus] = useState(false);
 
-  const [sortNumber, setNumbersSort] = useState();
+  const [sortNumbersSort, setNumbersSort] = useState();
 
   const apiErrorMsg = `Sorry, We don't have any data, please wait a few minutes, 
   if still there is no data, please come back later`;
@@ -34,9 +34,9 @@ const CurrencyPage = () => {
       .then(items => {
         setTime(items.time.updated);
         setBpi(Object.keys(items.bpi).map((k) => items.bpi[k]));
-        setStatus(false);
+        setApiErrorStatus(false);
       }).catch(
-        error => setStatus(true)
+        error => setApiErrorStatus(true)
       );
   }
 
@@ -75,7 +75,7 @@ const CurrencyPage = () => {
       <div className="container">
         <div>
           <h4>This data was produced from the CoinDesk Bitcoin Price Index (USD).</h4>
-          <p>Last update: {time} (updated every 10 sec)</p>
+          <p>CoinDesk last update: {time} (updated every 10 sec)</p>
           <p className="text-info">{apiError ? apiErrorMsg : ''}</p>
           <table className="table">
             <thead>
