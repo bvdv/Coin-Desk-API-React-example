@@ -5,7 +5,7 @@ TODO:
      if res status === 503 - please only 3 request per min
 */
 
-const apiBase = 'http://localhost:3000/gethtml';
+const apiBase = '/gethtml';
 
 const getHtml = async (url = '') => {
   const res = await fetch(`${apiBase}`, {
