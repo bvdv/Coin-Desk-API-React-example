@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import Header from '../includes/header/header';
-import HtmlService from '../../services/get-html-service';
+import GetHtmlService from '../../services/get-html-service';
+
+/*
+ TODO:
+  1) To decomposite/separate analyzeTags to separated service or class
+*/
 
 const AnalyseTool = () => {
 
@@ -12,7 +17,7 @@ const AnalyseTool = () => {
 
   const handleSubmit = event => {
     setWrongUrlStatus(false);
-    HtmlService.getHtml(inputValue)
+    GetHtmlService.getHtml(inputValue)
       .then(res => { analyzeTags(res) })
       .catch(err => setWrongUrlStatus(true));
     event.preventDefault();
@@ -27,6 +32,8 @@ const AnalyseTool = () => {
     let all = documentHtml.getElementsByTagName("*");
     let arrAllUniqTags = [];
     let arrMostCommonlyUsedTags = [];
+
+    // find all uniq tags
     for (let i = 0, max = all.length; i < max; i++) {
       let tagname = all[i].tagName;
       if (arrAllUniqTags.indexOf(tagname) == -1) {
@@ -34,6 +41,7 @@ const AnalyseTool = () => {
       }
     }
 
+    // count usage of tags
     for (let index = 0; index < arrAllUniqTags.length; index++) {
       let tag = arrAllUniqTags[index];
       arrMostCommonlyUsedTags.push(
@@ -41,6 +49,7 @@ const AnalyseTool = () => {
       );
     }
 
+    // sort most used tag first
     arrMostCommonlyUsedTags.sort((a, b) => {
       return a[1] - b[1];
     });
