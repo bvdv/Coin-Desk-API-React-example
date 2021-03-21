@@ -15,7 +15,7 @@ const App = () => {
                     <Route exact path="/"><MainPage /></Route>
                     <Route path="/analysis"><AnalyseToolPage /></Route>
                     <Route path="/currencies"><CurrencyPage /></Route>
-                    {/* TODO: add route not found */}
+                    <Route path="*"><Redirect to={{ pathname: "/"}} /></Route>
                 </Switch>
             </Router>
         </div>

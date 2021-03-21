@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 /*
  TODO:
-  1) To decomposite/separate analyzeTags to separated service or class or components
+  1) Need add find the longest path in the document tree 
+  2) To decomposite/separate analyzeTags to separated service or class or components
 */
 
 const AnalyzedTags = ({ documentString }) => {
@@ -10,10 +11,11 @@ const AnalyzedTags = ({ documentString }) => {
   const [mostCommonlyUsedTags, setMostCommonlyUsedTags] = useState([]);
 
   useEffect(() => {
+    let mounted = true;
     if (documentString) {
       analyzeTags(documentString);
     }
-    return () => { console.log("cleaned up");};
+    return () => mounted = false;
   }, [documentString]);
 
   const analyzeTags = (documentString) => {

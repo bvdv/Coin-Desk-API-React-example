@@ -8,7 +8,7 @@
       https://api.coindesk.com/v1/bpi/historical/close.json?start=2013-09-01&end=2013-09-05
 
       TODO:
-      add something against many concurrent async requests
+      need add something against many concurrent async requests
   */
 
   const apiBase = 'https://api.coindesk.com/v1/bpi/';

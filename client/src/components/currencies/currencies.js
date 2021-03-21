@@ -5,15 +5,16 @@ import CoindeskApiService from '../../services/coindesk-api-services';
 const CurrencyPage = () => {
 
   /* TODO: 
-      1) need add isLoaded for case whene response from API too slow
+      1) need add sorting
       2) useCallback() for Object.keys(items.bpi).map((k) => items.bpi[k])
   */
 
   const [time, setTime] = useState([]);
   const [bpi, setBpi] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const [apiError, setApiErrorStatus] = useState(false);
 
-  const [sortNumbersSort, setNumbersSort] = useState();
+  const [sortOrder, setSortOrder] = useState();
 
   const apiErrorMsg = `Sorry, We don't have any data, please wait a few minutes, 
   if still there is no data, please come back later`;
@@ -35,17 +36,19 @@ const CurrencyPage = () => {
         setTime(items.time.updated);
         setBpi(Object.keys(items.bpi).map((k) => items.bpi[k]));
         setApiErrorStatus(false);
-      }).catch(
+      }).then(
+        setIsLoaded(true)
+      ).catch(
         error => setApiErrorStatus(true)
       );
   }
 
   const displayCurrenciesData = () => {
-    // switch (sortNumber) {
-    //   case value:
+    // switch (sortOrder) {
+    //   case desc:
     //     break;
 
-    //   case value:
+    //   case asce:
     //     break;
 
     //   default:
@@ -77,6 +80,7 @@ const CurrencyPage = () => {
           <h4>This data was produced from the CoinDesk Bitcoin Price Index (USD).</h4>
           <p>CoinDesk last update: {time} (updated every 10 sec)</p>
           <p className="text-info">{apiError ? apiErrorMsg : ''}</p>
+          <p className="text-info">{isLoaded ? '' : 'please wait until result will be fully loaded'}</p>
           <table className="table">
             <thead>
               <tr>
@@ -84,10 +88,13 @@ const CurrencyPage = () => {
                   Code
                 </th>
                 <th scope="col">
+                  Rate
+                </th>
+                {/* <th scope="col">
                   Rate <button className="btn btn-link" onClick={() => { sortedData() }}>
                     <span>&#129031;</span><span>&#129029;</span>
                   </button>
-                </th>
+                </th> */}
               </tr>
             </thead>
             {displayCurrenciesData()}
