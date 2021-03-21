@@ -4,10 +4,10 @@ import GetHtmlService from '../../services/get-html-service';
 
 /*
  TODO:
-  1) To decomposite/separate analyzeTags to separated service or class
+  1) To decomposite/separate analyzeTags to separated service or class or components
 */
 
-const AnalyseTool = () => {
+const AnalyseToolPage = () => {
 
   const [inputValue, setInputValue] = useState("");
   const [wrongUrlStatus, setWrongUrlStatus] = useState(false);
@@ -97,4 +97,4 @@ const AnalyseTool = () => {
   );
 }
 
-export default AnalyseTool;
+export default AnalyseToolPage;
