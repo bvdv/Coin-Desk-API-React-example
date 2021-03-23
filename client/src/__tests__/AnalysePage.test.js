@@ -5,19 +5,28 @@ import AnalyzedTags from "../components/analyzed-tags/analyzed-tags"
 
 describe("AnalysePage", () => {
   it("renders", () => {
-    shallow(<AnalyzedTags />);
+    shallow(<AnalysePage />);
   });
 
   it("Click first button", () => {
-    const wrapper = mount(<AnalysePage />);
+    // const wrapper = shallow(<AnalysePage />);
+    // const button = wrapper.find("div button");
+    // const instance = wrapper.instance();
+    // instance.handleSubmit = jest.fn(instance.handleSubmit);
+    // button.simulate("click");
+    // expect(instance.handleSubmit).toHaveBeenCalled();
+
     wrapper.find("input").instance().value = "http://google.com";
     expect(wrapper.find("input").instance().value).toEqual("http://google.com");
-    wrapper.find("div button").first().simulate("click");
-    // expect(
-    //   wrapper
-    //     .find("span span")
-    //     .first()
-    //     .text()
-    // ).toEqual("HTML, ");
+  });
+
+  it("Check AnalyzedTags component", () => {
+    const wrapper = mount(<AnalysePage />);
+    expect(
+      wrapper
+        .find(".analyzed-tags p")
+        .first()
+        .text()
+    ).toEqual("All unique tags:");
   });
 });

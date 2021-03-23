@@ -26,14 +26,14 @@ const AnalyseToolPage = () => {
       <Header />
       <div className="container">
         <p>Please enter the link for analyse and press Analyse ( allowed only up to 1 URL check per sec )</p>
-        <p>example: http://google.com </p>
+        <p className="analysis-page_example-url">example: http://google.com </p>
         <form className="row g-3" onSubmit={handleSubmit}>
           <div className="input-group mb-3">
             <button className="btn btn-outline-secondary" type="submit" value="Submit" id="button-addon1">Analyse</button>
             <input type="url" className="form-control" placeholder="" value={inputValue} onChange={(event) => setInputValue(event.target.value)} required />
           </div>
         </form>
-        <p>{wrongUrlStatus && wrongUrlMsg}</p>
+        <p className="analysis-page_wrong-url">{wrongUrlStatus && wrongUrlMsg}</p>
         <AnalyzedTags documentString={documentString} />
       </div>
     </div>

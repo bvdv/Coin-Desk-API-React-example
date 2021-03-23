@@ -53,11 +53,11 @@ const AnalyzedTags = ({ documentString }) => {
   };
 
   return (
-    <div>
+    <div className="analyzed-tags">
       <div>
         <hr />
         <p>All unique tags:</p>
-        <p>
+        <p className="all-unique-tags">
           {allUniqTags.map((item, index) => (
             <span key={index}>
               <span>{item}, </span>
