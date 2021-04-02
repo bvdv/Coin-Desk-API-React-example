@@ -58,8 +58,8 @@ const AnalyzedTags = ({ documentString }) => {
         <hr />
         <p>All unique tags:</p>
         <p className="all-unique-tags">
-          {allUniqTags.map((item, index) => (
-            <span key={index}>
+          {allUniqTags.map((item) => (
+            <span key={item}>
               <span>{item}, </span>
             </span>
           ))}
@@ -69,8 +69,8 @@ const AnalyzedTags = ({ documentString }) => {
       <div>
         <p>Counted occurrence of a each tag, first one is most common used:</p>
         <p>
-          {mostCommonlyUsedTags.map((item, index) => (
-            <span key={index}>
+          {mostCommonlyUsedTags.map((item) => (
+            <span key={item}>
               <span>{item[0]} - {item[1]}, </span>
             </span>
           ))}
